@@ -6,7 +6,8 @@
     "express": "^4.14.0",
     "gulp": "^3.9.1",
     "gulp-nodemon": "^2.2.1",
-    "socket.io": "^1.7.1"
+    "socket.io": "^1.7.1",
+    "stream-series": "^0.1.1"
   },
   "devDependencies": {
     "gulp-inject": "^4.1.0"
