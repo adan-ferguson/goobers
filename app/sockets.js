@@ -2,19 +2,13 @@ function setup (http) {
     "use strict";
 
     var io = require('socket.io')(http);
+    var SocketUser = require('./socketUser.js');
+    var users = {};
 
     io.on('connection', function(socket){
 
-        io.emit('writeline', 'A user conencted');
-
-        socket.on('disconnect', function(){
-            io.emit('writeline', 'A user disconencted');
-        });
-
-        socket.on('chat message', function(msg){
-
-            io.emit('writeline', msg);
-        });
+        users[socket.id] = new SocketUser(io, socket);
+        socket.broadcast.emit('writeline', 'A user connected, id: ' + socket.id);
     });
 }
 
