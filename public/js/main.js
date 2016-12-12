@@ -1,14 +1,20 @@
-(function(){
+(function(Goobers){
     "use strict";
 
-    var socket = io();
-    writeline('Welcome');
+    var Main = {};
+    Main.start = function(){
 
-    socket.on('writeline', writeline);
+        Goobers.Socket.on('writeline', writeline);
+        writeline('Welcome');
+
+        Goobers.Game.start(document.getElementById('gamezone'));
+    };
 
     function writeline(msg){
 
         $('#chat').append($('<li>').text(msg));
-    }
+    };
 
-})();
+    Goobers.Main = Main;
+
+})(Goobers);
