@@ -1,5 +1,7 @@
 var gulp = require('gulp');
 var inject = require('gulp-inject');
+var nodemon = require('gulp-nodemon');
+
 var publicDir = './public/';
 
 gulp.task('inject', function(){
@@ -21,6 +23,21 @@ gulp.task('watch', function(){
     gulp.watch([publicDir + '/**/*.css', publicDir + '/**/*.js'], ['inject']);
 });
 
+gulp.task('debug', ['inject', 'watch'], function(){
+    "use strict";
+
+    nodemon({
+        script: 'server.js',
+        ext: 'js',
+        exec: 'node-debug'
+    });
+});
+
 gulp.task('default', ['inject', 'watch'], function(){
     "use strict";
+
+    nodemon({
+        script: 'server.js',
+        ext: 'js'
+    });
 });
